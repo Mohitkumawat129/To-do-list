@@ -10,12 +10,18 @@
   background-color: rgb(57, 45, 45);
 }
 .box {
+  overflow-y: scroll;
   width: 35vw;
   height: 75vh;
   border: 5px double white;
   border-radius: 25px;
   background-color: lightslategray;
 }
+/* width */
+::-webkit-scrollbar {
+  width: 0;
+}
+
 .box h1 {
   color: white;
   text-align: center;
@@ -61,7 +67,6 @@
   font-size: 2rem;
   color: white;
 }
-
 /* * {
   box-sizing: border-box;
   padding: 0;

@@ -28,7 +28,7 @@ const App = () => {
             />
             <button onClick={itemsList}>+</button>
           </div>
-          <ol>
+          <ol className="orderList">
             {Items.map((val) => {
               return <Component text={val} />;
             })}
