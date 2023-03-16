@@ -66,7 +66,39 @@
 .box ol li {
   font-size: 2rem;
   color: white;
+  list-style: none;
 }
+.listClass {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  left: -40px;
+}
+.listClass button {
+  position: relative;
+  top: -15px;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  transition: all 0.1s;
+}
+.listClass button:hover {
+  background-color: red;
+  color: white;
+  border: 5px solid black;
+}
+.listClass li {
+  position: relative;
+  top: 15px;
+  left: 10px;
+  height: 3rem;
+  cursor: default;
+}
+/* .listClass li:hover {
+  text-decoration: line-through;
+  text-decoration-color: red;
+} */
 /* * {
   box-sizing: border-box;
   padding: 0;

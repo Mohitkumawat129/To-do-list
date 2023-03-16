@@ -14,6 +14,14 @@ const App = () => {
     setInputList(""); //make our input field empty when 1 item is added so that
     //user can add more items
   };
+  const deleteClick = (id) => {
+    console.log("Deleted");
+    setItems((preValue) => {
+      return preValue.filter((arrEle, index) => {
+        return index !== id;
+      });
+    });
+  };
   return (
     <>
       <div className="container">
@@ -29,8 +37,16 @@ const App = () => {
             <button onClick={itemsList}>+</button>
           </div>
           <ol className="orderList">
-            {Items.map((val) => {
-              return <Component text={val} />;
+            {Items.map((val, index /*of current item*/) => {
+              return (
+                <Component
+                  key={index}
+                  /*to select which item to delete*/
+                  id={index}
+                  text={val}
+                  onSelect={deleteClick}
+                />
+              );
             })}
           </ol>
         </div>
@@ -47,5 +63,6 @@ create function for onChange and update onChange as event.target.value
 create new empty array as hook
 create function for onClick update preValue,return [...preValue,inputValue(current item)]
 update inputValue as ""
-use map method in our newly created array in ul and return <li>{val}</li>   
+use map method in our newly created array in ul and return <li>{val}</li> 
+create button with cross(X) sign give it onClick  
 */
