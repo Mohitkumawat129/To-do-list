@@ -39,3 +39,13 @@ const App = () => {
   );
 };
 export default App;
+/*
+create ui of to do list
+store onChange and value in input field
+create useState for value
+create function for onChange and update onChange as event.target.value 
+create new empty array as hook
+create function for onClick update preValue,return [...preValue,inputValue(current item)]
+update inputValue as ""
+use map method in our newly created array in ul and return <li>{val}</li>   
+*/
