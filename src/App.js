@@ -8,11 +8,15 @@ const App = () => {
     setInputList(event.target.value);
   };
   const itemsList = () => {
-    setItems((preValue) => {
-      return [...preValue, inputList];
-    });
-    setInputList(""); //make our input field empty when 1 item is added so that
-    //user can add more items
+    if (inputList === "") {
+      alert("Please write something to add");
+    } else {
+      setItems((preValue) => {
+        return [...preValue, inputList];
+      });
+      setInputList(""); //make our input field empty when 1 item is added so that
+      //user can add more items
+    }
   };
   const deleteClick = (id) => {
     console.log("Deleted");
