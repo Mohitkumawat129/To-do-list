@@ -118,6 +118,20 @@
     height: 1.5rem;
   }
 }
+.deleteBtn {
+  text-align: center;
+}
+.deleteBtn button {
+  font-size: 2rem;
+  padding: 5px 7.5px;
+  width: 10rem;
+  height: 3rem;
+  border-radius: 7.5%;
+}
+.deleteBtn button:hover {
+  background-color: red;
+  border-radius: 20%;
+}
 @media (max-width: 600px) {
   .box input {
     width: 60%;

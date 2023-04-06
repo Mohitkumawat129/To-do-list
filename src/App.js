@@ -1,9 +1,16 @@
-import React, { useState } from "react";
-import Component from "./Component";
+import React, { useState, useEffect } from "react";
+// Get items from local storage
+const getLocalItems = () => {
+  let list = localStorage.getItem("lists");
+  if (list) {
+    return JSON.parse(localStorage.getItem("lists"));
+  } else {
+    return [];
+  }
+};
 const App = () => {
   const [inputList, setInputList] = useState("");
-  const [Items, setItems] = useState([]);
-
+  const [Items, setItems] = useState(getLocalItems());
   const inputChange = (event) => {
     setInputList(event.target.value);
   };
@@ -18,14 +25,17 @@ const App = () => {
       //user can add more items
     }
   };
+  // Remove an item from list
   const deleteClick = (id) => {
-    console.log("Deleted");
-    setItems((preValue) => {
-      return preValue.filter((arrEle, index) => {
-        return index !== id;
-      });
+    const removeItems = Items.filter((curEle, index) => {
+      return index !== id;
     });
+    setItems(removeItems);
   };
+  // Set data to local storage
+  useEffect(() => {
+    localStorage.setItem("lists", JSON.stringify(Items));
+  }, [Items]);
   return (
     <>
       <div className="container">
@@ -43,30 +53,21 @@ const App = () => {
           <ol className="orderList">
             {Items.map((val, index /*of current item*/) => {
               return (
-                <Component
-                  key={index}
-                  /*to select which item to delete*/
-                  id={index}
-                  text={val}
-                  onSelect={deleteClick}
-                />
+                <>
+                  <div className="listClass">
+                    <button onClick={() => deleteClick(index)}>X</button>
+                    <li> {val} </li>
+                  </div>
+                </>
               );
             })}
           </ol>
+          <div className="deleteBtn">
+            <button onClick={() => setItems([])}>Delete</button>
+          </div>
         </div>
       </div>
     </>
   );
 };
 export default App;
-/*
-create ui of to do list
-store onChange and value in input field
-create useState for value
-create function for onChange and update onChange as event.target.value 
-create new empty array as hook
-create function for onClick update preValue,return [...preValue,inputValue(current item)]
-update inputValue as ""
-use map method in our newly created array in ul and return <li>{val}</li> 
-create button with cross(X) sign give it onClick  
-*/
