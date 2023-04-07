@@ -2,151 +2,98 @@
   margin: 0;
   padding: 0;
 }
-.container {
+body {
+  background-color: gray;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: rgb(57, 45, 45);
+  height: 80vh;
 }
-.box {
+.container {
+  padding: 25px 50px;
+  width: 25vw;
+  height: 55vh;
+  border: 2px solid black;
+  background-color: brown;
+}
+.item {
+  width: 25vw;
+  height: 55vh;
   overflow-y: scroll;
-  width: 35vw;
-  height: 75vh;
-  border: 5px double white;
-  border-radius: 25px;
-  background-color: lightslategray;
 }
-/* width */
 ::-webkit-scrollbar {
+  height: 25vh;
   width: 0;
 }
-
-.box h1 {
+.container h1 {
+  font-size: 3rem;
   color: white;
   text-align: center;
-  width: 35vw;
-  height: 4rem;
-  font-size: 3rem;
-  background-color: brown;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-  border-bottom: 10px solid white;
 }
-.inputField {
+.inputAndBtn {
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
 }
-.box input {
-  padding: 10px 15px;
-  margin-top: 30px;
-  width: 70%;
-  font-size: 2.5rem;
-}
-.box button {
-  width: 3.5rem;
-  height: 3.5rem;
+.inputAndBtn button {
+  font-size: 2rem;
+  padding: 3px 6px;
   border-radius: 50%;
-  padding: 5px;
-  margin-top: 35px;
+  transition: all 0.2s;
+}
+.inputAndBtn button:hover {
+  background-color: green;
+  border-radius: 10px solid white;
+}
+.container input {
+  width: 80%;
   font-size: 2rem;
-  transition: all 0.1s;
+  padding: 5px 10px;
 }
-.box button:hover {
-  background-color: orange;
-  color: white;
-  border: 5px solid black;
-}
-.box ol {
-  position: relative;
-  top: 25px;
-  left: 60px;
-}
-.box ol li {
-  font-size: 2rem;
-  color: white;
-  list-style: none;
-}
-.listClass {
-  margin-left: -45px;
-  height: 2.5rem;
+
+.list {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 15px 10px;
 }
-.listClass button {
+.list .btnGroup {
+  /* border: 2px solid black;
+  height: 3rem; */
+  width: 5rem;
   position: relative;
-  top: -25px;
-  width: 2rem;
-  height: 2rem;
+  bottom: 2rem;
+  left: 16rem;
+  display: flex;
+  justify-content: space-around;
+}
+.list .btnGroup button {
   font-size: 1rem;
+  padding: 3px 6px;
+  margin: 0 5px;
+  border-radius: 20px;
+  transition: all 0.2s;
 }
-
-.listClass button:hover {
+.list .btnGroup button:hover {
   background-color: red;
+  border-radius: 10px solid white;
 }
-.listClass li {
-  margin-left: 10px;
+.list li {
+  list-style: none;
+  font-size: 1.5rem;
+  padding: 2px 4px;
+  border: 2px solid gray;
 }
-
-@media (max-width: 950px) {
-  .box {
-    width: 45vw;
-    height: 55vh;
-    border: 3px double white;
-    border-radius: 25px;
-  }
-  .box h1 {
-    width: 45vw;
-    height: 3rem;
-    font-size: 2rem;
-  }
-  .box input {
-    padding: 5px 10px;
-    margin-top: 20px;
-    width: 70%;
-    height: 3rem;
-    font-size: 2rem;
-  }
-  .box button {
-    width: 3rem;
-    height: 3rem;
-    margin-top: 30px;
-  }
-  .listClass button {
-    top: -20px;
-    width: 1.5rem;
-    height: 1.5rem;
-  }
+.delBtn {
+  display: flex;
+  justify-content: center;
 }
-.deleteBtn {
-  text-align: center;
-}
-.deleteBtn button {
+.delBtn button {
   font-size: 2rem;
-  padding: 5px 7.5px;
-  width: 10rem;
-  height: 3rem;
-  border-radius: 7.5%;
+  padding: 3px 6px;
+
+  transition: all 0.2s;
 }
-.deleteBtn button:hover {
-  background-color: red;
-  border-radius: 20%;
-}
-@media (max-width: 600px) {
-  .box input {
-    width: 60%;
-    height: 2.5rem;
-    font-size: 1.5rem;
-  }
-  .box button {
-    width: 3rem;
-    height: 3rem;
-    margin-top: 20px;
-  }
-  .listClass button {
-    top: -10px;
-    width: 1.5rem;
-    height: 1.5rem;
-    padding-bottom: 25px;
-  }
+.delBtn button:hover {
+  background-color: gray;
+  border-radius: 15px;
 }

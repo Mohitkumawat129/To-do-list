@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 // Get items from local storage
 const getLocalItems = () => {
   let list = localStorage.getItem("lists");
@@ -9,28 +10,52 @@ const getLocalItems = () => {
   }
 };
 const App = () => {
-  const [inputList, setInputList] = useState("");
+  const [inputValue, setInputValue] = useState();
+  // getLocalItems() for local storage
   const [Items, setItems] = useState(getLocalItems());
-  const inputChange = (event) => {
-    setInputList(event.target.value);
-  };
-  const itemsList = () => {
-    if (inputList === "") {
+  // toggle to change + sign to edit when click on edit button
+  const [toggleSubmit, setToggleSubmit] = useState(true);
+  const [editInInput, setEditInInput] = useState(null);
+
+  const addClick = () => {
+    if (!inputValue) {
       alert("Please write something to add");
+    } else if (inputValue && !toggleSubmit) {
+      setItems(
+        Items.map((val) => {
+          if (val.id === editInInput) {
+            return { ...val, name: inputValue };
+          }
+          return val;
+        })
+      );
+      setToggleSubmit(true);
+      setInputValue("");
+      setEditInInput(null);
     } else {
-      setItems((preValue) => {
-        return [...preValue, inputList];
+      const allInputValue = {
+        id: new Date().getTime().toString(),
+        name: inputValue,
+      };
+      setItems((val) => {
+        return [...val, allInputValue];
       });
-      setInputList(""); //make our input field empty when 1 item is added so that
-      //user can add more items
+      setInputValue("");
     }
   };
-  // Remove an item from list
-  const deleteClick = (id) => {
-    const removeItems = Items.filter((curEle, index) => {
-      return index !== id;
+  const removeClick = (index) => {
+    const removeItem = Items.filter((val) => {
+      return index !== val.id;
     });
-    setItems(removeItems);
+    setItems(removeItem);
+  };
+  const editClick = (id) => {
+    const editItem = Items.find((val) => {
+      return val.id === id;
+    });
+    setInputValue(editItem.name); /* selected/edited item to input box */
+    setToggleSubmit(false);
+    setEditInInput(id);
   };
   // Set data to local storage
   useEffect(() => {
@@ -39,35 +64,42 @@ const App = () => {
   return (
     <>
       <div className="container">
-        <div className="box">
+        <div className="item">
           <h1>To do list</h1>
-          <div className="inputField">
+          <div className="inputAndBtn">
             <input
               type="text"
-              placeholder="Add an items"
-              onChange={inputChange}
-              value={inputList}
+              placeholder="Add an item"
+              value={inputValue}
+              onChange={(event) => setInputValue(event.target.value)}
             />
-            <button onClick={itemsList}>+</button>
+            {toggleSubmit ? (
+              <button onClick={addClick}>+</button>
+            ) : (
+              <button onClick={addClick}>edit</button>
+            )}
           </div>
-          <ol className="orderList">
-            {Items.map((val, index /*of current item*/) => {
+          <ol className="list">
+            {Items.map((val) => {
               return (
                 <>
-                  <div className="listClass">
-                    <button onClick={() => deleteClick(index)}>X</button>
-                    <li> {val} </li>
+                  <li key={val.id}> {val.name} </li>
+
+                  <div className="btnGroup">
+                    <button onClick={() => editClick(val.id)}> edit </button>
+                    <button onClick={() => removeClick(val.id)}> X </button>
                   </div>
                 </>
               );
             })}
           </ol>
-          <div className="deleteBtn">
-            <button onClick={() => setItems([])}>Delete</button>
-          </div>
+        </div>
+        <div className="delBtn">
+          <button onClick={() => setItems([])}>Delete</button>
         </div>
       </div>
     </>
   );
 };
+
 export default App;
