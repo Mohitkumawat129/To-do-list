@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import EditIcon from "@mui/icons-material/Edit";
+import AddTaskIcon from "@mui/icons-material/AddTask";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Tooltip from "@mui/material/Tooltip";
 
 // Get items from local storage
 const getLocalItems = () => {
@@ -64,21 +68,29 @@ const App = () => {
   return (
     <>
       <div className="container">
+        <h1>To do list</h1>
+        <div className="inputAndBtn">
+          <input
+            type="text"
+            placeholder="Add an item"
+            value={inputValue}
+            onChange={(event) => setInputValue(event.target.value)}
+          />
+          {toggleSubmit ? (
+            <button onClick={addClick}>
+              <Tooltip title="Add item">
+                <AddTaskIcon />
+              </Tooltip>
+            </button>
+          ) : (
+            <button onClick={addClick}>
+              <Tooltip title="Edit">
+                <EditIcon />
+              </Tooltip>
+            </button>
+          )}
+        </div>
         <div className="item">
-          <h1>To do list</h1>
-          <div className="inputAndBtn">
-            <input
-              type="text"
-              placeholder="Add an item"
-              value={inputValue}
-              onChange={(event) => setInputValue(event.target.value)}
-            />
-            {toggleSubmit ? (
-              <button onClick={addClick}>+</button>
-            ) : (
-              <button onClick={addClick}>edit</button>
-            )}
-          </div>
           <ol className="list">
             {Items.map((val) => {
               return (
@@ -86,8 +98,16 @@ const App = () => {
                   <li key={val.id}> {val.name} </li>
 
                   <div className="btnGroup">
-                    <button onClick={() => editClick(val.id)}> edit </button>
-                    <button onClick={() => removeClick(val.id)}> X </button>
+                    <button onClick={() => editClick(val.id)}>
+                      <Tooltip title="Edit">
+                        <EditIcon />
+                      </Tooltip>
+                    </button>
+                    <button onClick={() => removeClick(val.id)}>
+                      <Tooltip title="Remove">
+                        <DeleteIcon />
+                      </Tooltip>
+                    </button>
                   </div>
                 </>
               );

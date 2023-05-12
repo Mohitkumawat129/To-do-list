@@ -12,7 +12,7 @@ body {
 .container {
   padding: 25px 50px;
   width: 25vw;
-  height: 55vh;
+  height: 70vh;
   border: 2px solid black;
   background-color: brown;
 }
@@ -38,6 +38,7 @@ body {
   font-size: 2rem;
   padding: 3px 6px;
   border-radius: 50%;
+  cursor: pointer;
   transition: all 0.2s;
 }
 .inputAndBtn button:hover {
@@ -57,11 +58,9 @@ body {
   margin: 15px 10px;
 }
 .list .btnGroup {
-  /* border: 2px solid black;
-  height: 3rem; */
   width: 5rem;
   position: relative;
-  bottom: 2rem;
+  bottom: 2.5rem;
   left: 16rem;
   display: flex;
   justify-content: space-around;
@@ -71,6 +70,7 @@ body {
   padding: 3px 6px;
   margin: 0 5px;
   border-radius: 20px;
+  cursor: pointer;
   transition: all 0.2s;
 }
 .list .btnGroup button:hover {
@@ -79,9 +79,13 @@ body {
 }
 .list li {
   list-style: none;
-  font-size: 1.5rem;
-  padding: 2px 4px;
+  font-size: 1.75rem;
+  padding: 5px 4px;
   border: 2px solid gray;
+}
+.list li:hover {
+  background-color: gray;
+  color: white;
 }
 .delBtn {
   display: flex;
@@ -90,7 +94,7 @@ body {
 .delBtn button {
   font-size: 2rem;
   padding: 3px 6px;
-
+  cursor: pointer;
   transition: all 0.2s;
 }
 .delBtn button:hover {
